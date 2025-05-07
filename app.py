@@ -8,12 +8,17 @@ OPENWEATHER_API_KEY = 'your_openweather_api_key'  # Replace with your key
 
 # ------------------- Helper Functions -------------------
 def get_city_coordinates(city):
-    url = f"http://api.openweathermap.org/geo/1.0/direct?q={city}&limit=1&appid={OPENWEATHER_API_KEY}"
-    response = requests.get(url)
-    data = response.json()
-    if not data:
+    try:
+        url = f"http://api.openweathermap.org/geo/1.0/direct?q={city}&limit=1&appid={OPENWEATHER_API_KEY}"
+        response = requests.get(url)
+        response.raise_for_status()  # Raises an HTTPError if the response was an error
+        data = response.json()
+        if not data:
+            return None
+        return data[0].get('lat'), data[0].get('lon')
+    except Exception as e:
+        st.error(f"Failed to get coordinates for city '{city}'. Error: {e}")
         return None
-    return data[0]['lat'], data[0]['lon']
 
 def get_weather(lat, lon):
     url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={OPENWEATHER_API_KEY}&units=metric"
