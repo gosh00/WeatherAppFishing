@@ -64,10 +64,6 @@ if city:
         st.write(f"Humidity: {weather['main']['humidity']}%")
 
         # Show Water Bodies
-        st.subheader("💧 Nearby Lakes and Rivers")
-        water_bodies = get_nearby_water_bodies(lat, lon)
-        if water_bodies['elements']:
-            # Show Water Bodies
             st.subheader("💧 Nearby Lakes and Rivers")
             water_bodies = get_nearby_water_bodies(lat, lon)
             if water_bodies['elements']:
