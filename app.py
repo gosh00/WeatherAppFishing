@@ -4,7 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # ------------------- API KEYS -------------------
-OPENWEATHER_API_KEY = 'your_openweather_api_key'  # Replace with your key
+OPENWEATHER_API_KEY = '86da0e105224b40c00ea70c6ccd41427'  # Replace with your key
 
 # ------------------- Helper Functions -------------------
 def get_city_coordinates(city):
