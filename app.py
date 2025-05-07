@@ -68,22 +68,22 @@ if city:
         water_bodies = get_nearby_water_bodies(lat, lon)
         if water_bodies['elements']:
             # Show Water Bodies
-st.subheader("💧 Nearby Lakes and Rivers")
-water_bodies = get_nearby_water_bodies(lat, lon)
-if water_bodies['elements']:
-    df_water = pd.DataFrame([{
-        'Name': el.get('tags', {}).get('name', 'Unnamed'),
-        'Lat': el['center']['lat'],
-        'Lon': el['center']['lon']
-    } for el in water_bodies['elements']])
-
-    # Ensure the column names are exactly 'lat' and 'lon'
-    df_water = df_water.rename(columns={"Lat": "lat", "Lon": "lon"})
-
-    st.map(df_water)  # Plot the map with corrected column names
-    st.dataframe(df_water)  # Show the DataFrame as well
-else:
-    st.write("No nearby lakes or rivers found.")
+            st.subheader("💧 Nearby Lakes and Rivers")
+            water_bodies = get_nearby_water_bodies(lat, lon)
+            if water_bodies['elements']:
+                df_water = pd.DataFrame([{
+                    'Name': el.get('tags', {}).get('name', 'Unnamed'),
+                    'Lat': el['center']['lat'],
+                    'Lon': el['center']['lon']
+                } for el in water_bodies['elements']])
+            
+                # Ensure the column names are exactly 'lat' and 'lon'
+                df_water = df_water.rename(columns={"Lat": "lat", "Lon": "lon"})
+            
+                st.map(df_water)  # Plot the map with corrected column names
+                st.dataframe(df_water)  # Show the DataFrame as well
+            else:
+                st.write("No nearby lakes or rivers found.")
 
 
         # USGS Streamflow Data
